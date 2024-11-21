@@ -28,35 +28,39 @@
 
     <script>
        function Submitdata(){
+        // Get form elements
         let fristnameDom = document.querySelector('input[name="fristname"]');
         let lastnameDom = document.querySelector('input[name="lastname"]');
         let ageDom = document.querySelector('input[name="age"]');
         let genderdom = document.querySelector('input[name="gender"]:checked');
         let interestDom = document.querySelectorAll('input[name="interest"]:checked');
-       
-           let interest = ''
 
-           for (let i = 0 ; i<interestDom.length ; i++){
-              interest += interestDom[i].value
+        // Collect interests
+        let interest = [];
+        for (let i = 0; i < interestDom.length; i++) {
+            interest.push(interestDom[i].value);
+        }
 
-           }
-           console.log(interest)
-
+        // Combine all user data into an object
         let userdata = {
             fristname: fristnameDom.value,
             lastname: lastnameDom.value,
             age: ageDom.value,
-            gender : genderdom.value ,
-        }
+            gender: genderdom ? genderdom.value : "",  // Check if gender is selected
+            interest: interest.join(', ')  // Join interests with commas
+        };
 
+        // Display the data in console
+        console.log(userdata);
 
-
-    
+        // Optionally, alert the user with their information
+        alert('ข้อมูลของคุณ:\n' +
+              'ชื่อจริง: ' + userdata.fristname + '\n' +
+              'นามสกุล: ' + userdata.lastname + '\n' +
+              'อายุ: ' + userdata.age + '\n' +
+              'เพศ: ' + userdata.gender + '\n' +
+              'สิ่งที่ชอบ: ' + userdata.interest);
     }
-
-
-
-
     </script>
 
 </body>
