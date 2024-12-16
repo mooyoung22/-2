@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+class Person {
+    // Fields
+    private String name;
+    private int age;
+
+    // Constructor
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Method to check status
+    public String checkStatus() {
+        if (age > 18) {
+            return "ชื่อ " + name + ", คุณเป็นผู้ใหญ่";
+        } else {
+            return "ชื่อ " + name + ", คุณยังเป็นเยาวชน";
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // รับค่าจากผู้ใช้
+        System.out.print("กรุณากรอกชื่อ: ");
+        String name = scanner.nextLine();
+        System.out.print("กรุณากรอกอายุ: ");
+        int age = scanner.nextInt();
+
+        // สร้างออบเจกต์ของคลาส Person
+        Person person = new Person(name, age);
+
+        // เรียกใช้เมธอด checkStatus() และแสดงผลลัพธ์
+        System.out.println(person.checkStatus());
+
+        scanner.close();
+    }
+}
