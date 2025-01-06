@@ -7,6 +7,7 @@ app.use(bodyparser.json())
 const port = 8000
 let users = []
 let count = 1
+let conn = null
 
 // path = / เรียกข้อมูลทั้งหมด
 app.get('/users',(req,res)=>{
@@ -57,7 +58,7 @@ app.put('/users/:id',(req,res)=>{
     users[selecetindex].gender = updateUser.gender || users[selecetindex].gender
 
     res.json({
-        massage : 'Update user complate !!' ,
+        message : 'Update user complate !!' ,
         data :{
             user : updateUser,
             indexUpdate : selecetindex
@@ -65,6 +66,20 @@ app.put('/users/:id',(req,res)=>{
     })
 })
 
+app.delete('/users/:id',(req,res)=>{
+    let id = req.params.id
+    let selecetindex = users.findIndex(user=>user.id == id)
+
+    users.splice(selectIndex,1)
+
+    res.json({
+        
+    message : "delete complete",
+    indexDelete : selecetindex
+    })
+
+
+})
 
 app.listen(port,(req,res)=>{
     console.log("https run at " + port)
